@@ -84,12 +84,12 @@
     const countdownElement = document.getElementById('countdown');
     const targetDate = new Date('2024-05-08T00:00:00');
     const progressBar = document.querySelector (".progress-inner");
+    const countdownInterval = setInterval(updateCountdown, 1000);
 
     function updateCountdown() {
       const now = new Date().getTime();
       const distance = targetDate - now;
-      const countdownInterval = setInterval(updateCountdown, 1000);
-      
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -99,11 +99,11 @@
         countdownElement.style.width = '80%';
         clearInterval(countdownInterval);
         countdownElement.innerHTML = '⏱️ Countdown Finished! :)';
-        progressBar.style.width = '100';
+        progressBar.style.width = '100%';
+        progressBar.style.backgroundColor = 'green';
         alert ('Time to apply!');
         return;
       }
-
 
       const totalTime = targetDate.getTime() - (new Date('2024-02-02T00:00:00')).getTime();
       const elapsedTime = totalTime - distance;
@@ -116,7 +116,6 @@
     }
 
     updateCountdown();
-    
   </script>
 
 </body>
